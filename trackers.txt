@@ -1,0 +1,20 @@
+# Vanta - İzleyiciler
+# Uygulama içi analitik, atıf (attribution) ve kullanıcı takibi yapan servisler.
+# Her satıra bir alan adı; alt alan adları da engellenir.
+app-measurement.com
+appsflyer.com
+appsflyersdk.com
+adjust.com
+adjust.io
+kochava.com
+mixpanel.com
+api.amplitude.com
+api2.amplitude.com
+api.segment.io
+mparticle.com
+scorecardresearch.com
+quantserve.com
+hotjar.com
+data.flurry.com
+clevertap-prod.com
+wzrkt.com
