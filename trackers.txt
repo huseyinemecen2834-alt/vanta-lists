@@ -1,20 +1,31 @@
 # Vanta - İzleyiciler
-# Uygulama içi analitik, atıf (attribution) ve kullanıcı takibi yapan servisler.
-# Her satıra bir alan adı; alt alan adları da engellenir.
+#
+# BU DOSYA OTOMATİK ÜRETİLİR, ELLE DÜZENLEME: değişikliğin bir sonraki üretimde silinir.
+# KURAL: Yalnızca "manual/" klasöründeki dosyaları düzenle.
+#   Alan adı eklemek için       : manual/trackers.txt
+#   Bir adın engelini kaldırmak : manual/allow.txt
+# GENERATED FILE - DO NOT EDIT. Edit manual/trackers.txt or manual/allow.txt instead.
+# Üreten: scripts/build.sh
+#
+# Kaynak: manual/trackers.txt (bu deponun el listesi; dış kaynak ve dış lisans yok)
+#
+# Üretim tarihi: 2026-11-20 19:01 UTC
+# Kural sayısı: 17
+#
+adjust.com
+adjust.io
+api.amplitude.com
+api.segment.io
+api2.amplitude.com
 app-measurement.com
 appsflyer.com
 appsflyersdk.com
-adjust.com
-adjust.io
+clevertap-prod.com
+data.flurry.com
+hotjar.com
 kochava.com
 mixpanel.com
-api.amplitude.com
-api2.amplitude.com
-api.segment.io
 mparticle.com
-scorecardresearch.com
 quantserve.com
-hotjar.com
-data.flurry.com
-clevertap-prod.com
+scorecardresearch.com
 wzrkt.com

@@ -1,0 +1,6 @@
+# Bu depodaki her metin dosyası, Windows'ta bile LF satır sonuyla tutulur.
+# scripts/build.sh CRLF ile Linux'ta çalışmaz; listeler de LF olmalıdır.
+* text=auto eol=lf
+*.sh text eol=lf
+*.txt text eol=lf
+*.yml text eol=lf

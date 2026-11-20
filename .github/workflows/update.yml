@@ -1,30 +1,63 @@
 name: Update lists
+
+# Kökteki ads.txt, trackers.txt ve malware.txt dosyalarını scripts/build.sh ile
+# yeniden üretir. Elle yalnızca "manual/" klasörü düzenlenir.
+
 on:
   schedule:
     - cron: "17 3 * * *"
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "manual/**"
+      - "scripts/**"
+
 permissions:
   contents: write
+
+# Aynı anda tek çalışma: yenisi, süren çalışma bitene kadar sırada bekler.
+concurrency:
+  group: update-lists
+  cancel-in-progress: false
+
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
+      # "ref" dal adıdır: sırada beklemiş bir çalışma, tetikleyen kayıt yerine
+      # dalın o anki ucunu alır.
       - uses: actions/checkout@v4
-      - name: Zararlı site listesi (URLhaus, malware-filter yansısı)
-        run: |
-          set -euo pipefail
-          curl -fsSL https://malware-filter.gitlab.io/malware-filter/urlhaus-filter-hosts-online.txt -o hosts.txt
-          {
-            echo "# Vanta - Zararlı siteler"
-            echo "# Kaynak: URLhaus (abuse.ch), https://gitlab.com/malware-filter/urlhaus-filter"
-            echo "# \"Update lists\" iş akışı bu dosyayı her gün yeniden üretir."
-            grep -v '^#' hosts.txt | awk 'NF >= 2 { print tolower($2) }' | grep '\.' | sort -u
-          } > malware.txt
-          rm hosts.txt
-      - name: Değişiklik varsa gönder
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Listeleri üret
+        run: bash scripts/build.sh
+
+      - name: Değişen listeleri kaydet ve gönder
+        env:
+          BRANCH: ${{ github.ref_name }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add malware.txt
-          git diff --cached --quiet || git commit -m "Zararlı site listesini güncelle"
-          git push
+          git add ads.txt trackers.txt malware.txt
+          if git diff --cached --quiet; then
+            echo "Listeler değişmedi; kaydedilecek bir şey yok."
+            exit 0
+          fi
+          git commit -m "Listeleri güncelle"
+          # Çalışma sürerken depoya (örneğin web'den) yeni kayıt gelmiş olabilir:
+          # göndermeden önce onun üstüne taşı. Üretilen dosyalarda çakışma
+          # olursa yeni üretilen sürüm kazanır (-X theirs).
+          for attempt in 1 2 3 4 5; do
+            if git pull --rebase -X theirs origin "$BRANCH" && git push origin "HEAD:$BRANCH"; then
+              exit 0
+            fi
+            git rebase --abort 2> /dev/null || true
+            echo "Gönderilemedi (deneme $attempt/5); yeniden denenecek."
+            sleep $((attempt * 5))
+          done
+          echo "::error::Listeler 5 denemede gönderilemedi."
+          exit 1

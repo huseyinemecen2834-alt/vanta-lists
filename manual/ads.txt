@@ -1,0 +1,48 @@
+# Vanta - Reklamlar (el listesi)
+#
+# KURAL: Yalnızca "manual/" klasöründeki dosyaları düzenle.
+# Depo kökündeki ads.txt, trackers.txt ve malware.txt otomatik üretilir;
+# onlarda yaptığın değişiklik bir sonraki üretimde silinir.
+#
+# Bu dosya: senin eklediğin reklam alan adları. Kökteki ads.txt, HaGeZi Light
+# listesi ile bu dosyanın birleşiminden üretilir.
+# Her satıra bir alan adı yaz; alt alan adları da engellenir.
+# "#" ile başlayan satırlar açıklamadır.
+# Kaydettikten birkaç dakika sonra kökteki ads.txt kendiliğinden güncellenir.
+
+# Google AdMob / AdSense / DoubleClick
+doubleclick.net
+2mdn.net
+googlesyndication.com
+googleadservices.com
+admob.com
+adservice.google.com
+pagead2.googlesyndication.com
+
+# Unity Ads
+unityads.unity3d.com
+auction.unityads.unity3d.com
+adserver.unityads.unity3d.com
+config.unityads.unity3d.com
+
+# AppLovin / MoPub
+applovin.com
+applvn.com
+mopub.com
+
+# Meta Audience Network
+an.facebook.com
+
+# Diğerleri
+ironsrc.com
+supersonicads.com
+inmobi.com
+vungle.com
+chartboost.com
+adcolony.com
+startapp.com
+smaato.net
+criteo.com
+pangleglobal.com
+mintegral.com
+fyber.com

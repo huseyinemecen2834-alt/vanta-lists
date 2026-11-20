@@ -1,0 +1,50 @@
+# Vanta - İzin listesi (asla engellenmeyecek adlar)
+#
+# KURAL: Yalnızca "manual/" klasöründeki dosyaları düzenle.
+# Depo kökündeki ads.txt, trackers.txt ve malware.txt otomatik üretilir;
+# onlarda yaptığın değişiklik bir sonraki üretimde silinir.
+#
+# Bu dosya: hiçbir listede engellenmemesi gereken adlar. Buradaki bir adı ya da
+# onun üst alan adını engelleyen kural, üç listeden de çıkarılır.
+# Örnek: www.google.com buradayken "google.com" kuralı listelere giremez
+# (uygulama her kuralın alt alan adlarını da engellediği için www.google.com da
+# engellenirdi). "ads.google.com" gibi başka alt alan adlarının kuralları kalır.
+# Bir uygulama bozulduysa, bozulan adı buraya ekle.
+# Her satıra bir ad yaz. "#" ile başlayan satırlar açıklamadır.
+# Kaydettikten birkaç dakika sonra kökteki dosyalar kendiliğinden güncellenir.
+
+# Google ile giriş (OAuth, Firebase Auth)
+accounts.google.com
+oauth2.googleapis.com
+www.googleapis.com
+securetoken.googleapis.com
+identitytoolkit.googleapis.com
+
+# Play hizmetleri ve Play Store
+android.googleapis.com
+android.clients.google.com
+play.googleapis.com
+play.google.com
+
+# Bildirimler (FCM) ve Firebase
+mtalk.google.com
+fcm.googleapis.com
+firebaseinstallations.googleapis.com
+firebaseremoteconfig.googleapis.com
+firestore.googleapis.com
+
+# Ödemeler
+payments.google.com
+pay.google.com
+
+# Captcha
+www.recaptcha.net
+
+# Vanta'nın bu listeleri indirdiği adres (engellenirse listeler güncellenemez)
+raw.githubusercontent.com
+
+# Bağlantı denetimi ve genel Google adresleri
+connectivitycheck.gstatic.com
+www.gstatic.com
+www.google.com
+www.youtube.com
